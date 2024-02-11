@@ -12,6 +12,14 @@ const NavBar = () => {
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
   ];
+
+  const linkClassName = (link: any) =>
+    classNames({
+      "text-zinc-900 font-semi-bold": link.href === currentPath,
+      "text-zinc-400": link.href !== currentPath,
+      "text-lg transition-colors": true,
+    });
+
   return (
     <>
       <nav className="bg-gray-100 shadow-md h-12 p-3  flex space-x-5 items-center">
@@ -20,18 +28,15 @@ const NavBar = () => {
         </Link>
 
         <ul className="flex space-x-6 ">
-          {links.map((link) => {
-            const linkClassName = classNames({
-              "text-zinc-900 font-semi-bold": link.href == currentPath,
-              "text-zinc-400": link.href !== currentPath,
-              "text-lg transition-colors": true,
-            });
-            return (
-              <Link className={linkClassName} key={link.href} href={link.href}>
-                {link.label}
-              </Link>
-            );
-          })}
+          {links.map((link) => (
+            <Link
+              className={linkClassName(link)}
+              key={link.href}
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          ))}
         </ul>
       </nav>
     </>
