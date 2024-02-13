@@ -21,7 +21,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="bg-gray-100 shadow-md h-12 p-3  flex space-x-5 items-center">
+      <nav className=" shadow-md h-12 p-3  flex space-x-5 items-center">
         <Link href="/">
           <FaBug size="1.5rem" className="text-zinc-500 hover:text-zinc-700" />
         </Link>

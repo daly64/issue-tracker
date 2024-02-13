@@ -1,5 +1,7 @@
 import NavBar from "./NavBar";
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NavBar />
-        <main className="p-7">{children}</main>
+        <Theme>
+          <NavBar />
+          <main className="p-7">{children}</main>
+        </Theme>
       </body>
     </html>
   );
