@@ -2,12 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 import { safeParse } from "valibot";
 import { issueSchema } from "@/validationSchemas";
+import { Params, numId } from "@/types";
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const id = Number.parseInt(params.id);
+export async function PATCH(request: NextRequest, { params }: Params) {
+  const id = numId(params);
 
   const body = await request.json();
   const validation = safeParse(issueSchema, body);
