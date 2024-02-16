@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/prisma/client";
-import { Params, numId } from "@/types";
+import { Params } from "@/types";
+import { getIdFromParams, prismaFindIssueById } from "@/utils/api";
 
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, params: Params) {
   try {
-    let id = numId(params);
-
-    const issue = await prisma.issue.findUnique({ where: { id: id } });
-    return NextResponse.json(issue == null ? "not found" : issue);
+    const id = getIdFromParams(params);
+    const issue = await prismaFindIssueById(id);
+    return NextResponse.json(issue);
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json(error);
   }
 }

@@ -1,23 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/prisma/client";
-import { safeParse } from "valibot";
-import { issueSchema } from "@/validationSchemas";
-import { Params, numId } from "@/types";
+import { Params } from "@/types";
+import { getIdFromParams, prismaUpdateIssue } from "@/utils/api";
 
-export async function PATCH(request: NextRequest, { params }: Params) {
-  const id = numId(params);
-
+export async function PATCH(request: NextRequest, params: Params) {
+  const id = getIdFromParams(params);
   const body = await request.json();
-  const validation = safeParse(issueSchema, body);
-  if (validation.success) {
-    const newIssue = await prisma.issue.update({
-      where: { id: id },
-      data: body,
-    });
-    return NextResponse.json(newIssue);
-  } else {
-    let error: string[] = [];
-    validation.issues.map((issue) => error.push(issue.message));
-    return NextResponse.json(error);
-  }
+  const updatedIssue = await prismaUpdateIssue(id, body);
+  return NextResponse.json(updatedIssue);
 }

@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/prisma/client";
+import { Params } from "@/types";
+import { getIdFromParams, prismaDeleteIssue } from "@/utils/api";
 
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const id = Number.parseInt(params.id);
-    try {
-       const newIssue = await prisma.issue.delete({ where: { id: id } });
-    return NextResponse.json(newIssue);   
-    } catch (error) {
-      return NextResponse.json(error);  
-    }
-
+export async function DELETE(request: NextRequest, params: Params) {
+  const id = getIdFromParams(params);
+  const deletedIssue = await prismaDeleteIssue(id);
+  return NextResponse.json(deletedIssue);
 }

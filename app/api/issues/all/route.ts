@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/prisma/client";
-
+import { prismaFindAllIssues } from "@/utils/api";
 
 export async function GET(request: NextRequest) {
-   try {
-   const issues = await prisma.issue.findMany(); 
-   return NextResponse.json(issues);
+  try {
+    const issues = await prismaFindAllIssues();
+    return NextResponse.json(issues);
   } catch (error) {
     return NextResponse.json(error);
   }
-  
 }
