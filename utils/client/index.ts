@@ -29,5 +29,9 @@ export function getIssueById(id: number) {
 export function postIssue(issue: Issue) {
   return axios.post(`${baseUrl}/new`, issue);
 }
-export function updateIssue() {}
-export function deleteIssue() {}
+export function updateIssue(id: number, issue: Issue) {
+  return axios.patch(`${baseUrl}/update/${id}`, issue);
+}
+export function deleteIssue(id: number) {
+  return axios.delete(`${baseUrl}/delete/${id}`);
+}
