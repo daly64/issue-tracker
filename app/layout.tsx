@@ -1,10 +1,9 @@
-
 import NavBar from "./NavBar";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Provider from "./Provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,15 +20,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Theme accentColor="blue" grayColor="gray">
-          <NavBar />
-          <main className="p-7">{children}</main>
-          {/* <ThemePanel /> */}
-        </Theme>
+        <NavBar />
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
