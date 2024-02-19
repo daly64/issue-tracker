@@ -23,7 +23,7 @@ const NavBar = () => {
     <>
       <nav className=" shadow-md h-12 p-3  flex space-x-5 items-center">
         <Link href="/">
-          <FaBug size="1.5rem" className="text-zinc-500 hover:text-zinc-700" />
+          <FaBug size="1.5rem" className="text-blue-500" />
         </Link>
 
         <ul className="flex space-x-6 ">

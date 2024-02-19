@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import type { Metadata } from "next";
