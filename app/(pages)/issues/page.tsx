@@ -2,19 +2,19 @@
 import Error from "@/components/Error";
 import IssuesTable from "@/components/IssuesTable";
 import Loading from "@/components/Loading";
-import Row from "@/components/Row";
 import { getAllIssues } from "@/utils/client";
 import { Issue } from "@prisma/client";
-import { Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
-import React from "react";
+import { Button, Dialog, Flex, Table, Text, TextField } from "@radix-ui/themes";
+
+import { useRouter } from "next/navigation";
 import { MdAdd } from "react-icons/md";
 import { useQuery } from "react-query";
 
 const page = () => {
   const { data, isLoading, error } = useQuery("issues", getAllIssues);
-
+  const router = useRouter();
   const issues = data?.data as Issue[];
+  const goToNewIssue = () => router.push("/issues/new");
   if (isLoading) {
     return <Loading />;
   }
@@ -24,11 +24,11 @@ const page = () => {
 
   return (
     <>
-      <Button>
+      {/* <Link href="/issues/new">New issue</Link> */}
+      <Button onClick={goToNewIssue}>
         <MdAdd size="20" />
         New Issue
       </Button>
-      {/* <Link href="/issues/new">New issue</Link> */}
 
       <IssuesTable issues={issues} />
     </>

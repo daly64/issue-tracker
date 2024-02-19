@@ -1,12 +1,15 @@
 "use client";
-import { TextArea, TextField, Button } from "@radix-ui/themes";
-import React from "react";
+import { TextArea, TextField, Button, Heading } from "@radix-ui/themes";
+
 const newIssuePage = () => {
+  const handleSubmit = () => {  };
+
   return (
     <div className="max-w-xl space-y-3">
+      <Heading as="h1">New Issue</Heading>
       <TextField.Input placeholder="Title" />
       <TextArea placeholder="Description" />
-      <Button>Submit New Issue</Button>
+      <Button onClick={handleSubmit}>Submit New Issue</Button>
     </div>
   );
 };

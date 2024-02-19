@@ -19,7 +19,7 @@ const IssuesTable = ({ issues }: { issues: Issue[] }) => {
         </Table.Header>
         <Table.Body>
           {issues.map((issue) => (
-            <Row issue={issue} />
+            <Row key={issue.id} issue={issue} />
           ))}
         </Table.Body>
       </Table.Root>
