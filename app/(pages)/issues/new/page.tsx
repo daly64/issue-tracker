@@ -1,8 +1,13 @@
 "use client";
 import { TextArea, TextField, Button, Heading } from "@radix-ui/themes";
+import { notification } from "antd";
 
 const newIssuePage = () => {
-  const handleSubmit = () => {  };
+  const handleSubmit = () => {
+    notification.open({
+      message: "Notification Title",
+    });
+  };
 
   return (
     <div className="max-w-xl space-y-3">

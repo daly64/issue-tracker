@@ -2,7 +2,6 @@
 
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import { QueryClient, QueryClientProvider } from "react-query";
-
 // Create a client
 const queryClient = new QueryClient();
 
