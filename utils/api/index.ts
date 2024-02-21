@@ -23,7 +23,9 @@ export async function prismaFindAllIssues() {
 export async function prismaNewIssue(issue: Issue) {
   const validation = safeParse(issueSchema, issue);
   if (validation.success) {
-    const newIssue = await prisma.issue.create({ data: issue });
+    const newIssue = await prisma.issue.create({
+      data: { title: issue.title, description: issue.description },
+    });
     return newIssue;
   } else {
     let error: string[] = [];

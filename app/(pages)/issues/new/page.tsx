@@ -2,9 +2,12 @@
 import { TextArea, TextField, Button, Heading } from "@radix-ui/themes";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { issueQuery } from "@/utils/client";
 const newIssuePage = () => {
   const router = useRouter();
-  const [newIssue, setIssue] = useState({ title: "", description: "" });
+  const [newIssue, setIssue] = useState({ id: 0, title: "", description: "" });
+
+  const { newIssueMutation } = issueQuery();
   const handleSubmit = () => {
     newIssueMutation(newIssue);
     router.push("/issues");
@@ -35,8 +38,4 @@ const newIssuePage = () => {
     </div>
   );
 };
-
 export default newIssuePage;
-function newIssueMutation(newIssue: { title: string; description: string }) {
-  throw new Error("Function not implemented.");
-}
