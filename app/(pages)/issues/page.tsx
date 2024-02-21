@@ -15,6 +15,7 @@ const page = () => {
   const router = useRouter();
   const issues = data?.data as Issue[];
   const goToNewIssue = () => router.push("/issues/new");
+
   if (isLoading) {
     return <Loading />;
   }
