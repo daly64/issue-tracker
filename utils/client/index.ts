@@ -1,6 +1,7 @@
 import { Issue } from "@prisma/client";
+import { notification } from "antd";
 import axios from "axios";
-import { QueryClient, useQuery } from "react-query";
+import { QueryClient, useMutation, useQuery } from "react-query";
 import { isQueryKey } from "react-query/types/core/utils";
 
 // axios client CRUD
@@ -24,5 +25,21 @@ export function issueQuery() {
   } = useQuery({ queryKey: "issues", queryFn: getAllIssues });
   const issues = data?.data as Issue[];
 
-  return { issues, issuesIsLoading, issuesError };
+  const { mutate: newIssueMutation } = useMutation({
+    mutationKey: "new issue",
+    mutationFn: (issue: Issue) => postIssue(issue),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: "issues" });
+      notification.open({
+        message: `created successfully`,
+      });
+    },
+    onError: () => {
+      notification.open({
+        message: `something went wrong`,
+      });
+    },
+  });
+
+  return { issues, issuesIsLoading, issuesError, newIssueMutation };
 }

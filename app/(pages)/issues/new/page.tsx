@@ -1,20 +1,12 @@
 "use client";
 import { TextArea, TextField, Button, Heading } from "@radix-ui/themes";
-import { notification } from "antd";
-import { useMutation } from "react-query";
-import { Issue } from "@/types";
-import { postIssue } from "@/utils/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 const newIssuePage = () => {
   const router = useRouter();
   const [newIssue, setIssue] = useState({ title: "", description: "" });
-  const mutation = useMutation("new issue", (issue: Issue) => postIssue(issue));
   const handleSubmit = () => {
-    mutation.mutate(newIssue);
-    notification.open({
-      message: `${newIssue.title} created successfully`,
-    });
+    newIssueMutation(newIssue);
     router.push("/issues");
   };
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,3 +37,6 @@ const newIssuePage = () => {
 };
 
 export default newIssuePage;
+function newIssueMutation(newIssue: { title: string; description: string }) {
+  throw new Error("Function not implemented.");
+}
