@@ -2,16 +2,19 @@ import { Badge, IconButton, Table } from "@radix-ui/themes";
 import { format, formatDistance } from "date-fns";
 import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { Issue } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 import { useMutation } from "react-query";
 import { deleteIssue, issueQuery } from "@/utils/client";
 
 const Row = ({ issue }: { issue: Issue }) => {
   const mutation = useMutation("delete issue", (id: number) => deleteIssue(id));
-  const { deleteIssueMutation } = issueQuery();
+  const { deleteIssueMutation, updateIssueMutation } = issueQuery();
   let id = issue.id;
   const handleDelete = () => {
     deleteIssueMutation(id);
+  };
+  const handleUpdate = () => {
+    updateIssueMutation({ ...issue, title: issue.title + "*" });
   };
 
   return (
@@ -29,16 +32,15 @@ const Row = ({ issue }: { issue: Issue }) => {
           })}
         </Table.Cell>
         <Table.Cell>
-          <IconButton color="blue" variant="soft" className="mr-2">
+          <IconButton
+            color="blue"
+            variant="soft"
+            className="mr-2"
+            onClick={() => handleUpdate()}
+          >
             <MdEdit size="20" />
           </IconButton>
-          <IconButton
-            color="red"
-            variant="soft"
-            onClick={() => {
-              handleDelete();
-            }}
-          >
+          <IconButton color="red" variant="soft" onClick={() => handleDelete()}>
             <MdDelete size="20" />
           </IconButton>
         </Table.Cell>

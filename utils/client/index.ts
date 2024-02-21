@@ -55,7 +55,7 @@ export function issueQuery() {
     onSuccess: () => {
       queryClient.invalidateQueries(["issues"]);
       notification.open({
-        message: `deleted successfully`,
+        message: `updated successfully`,
       });
     },
     onError: () => {
