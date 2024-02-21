@@ -55,8 +55,6 @@ export async function prismaUpdateIssue(id: number, issue: Issue) {
 export async function prismaDeleteIssue(id: number) {
   try {
     const deletedIssue = await prisma.issue.delete({ where: { id: id } });
-    console.log(deletedIssue);
-
     return deletedIssue;
   } catch (error: any) {
     return error.meta.cause;
