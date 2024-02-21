@@ -4,7 +4,7 @@ import IssuesTable from "@/components/IssuesTable";
 import Loading from "@/components/Loading";
 import { getAllIssues } from "@/utils/client";
 import { Issue } from "@prisma/client";
-import { Button, Dialog, Flex, Table, Text, TextField } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 
 import { useRouter } from "next/navigation";
 import { MdAdd } from "react-icons/md";
