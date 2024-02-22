@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { issueQuery } from "@/utils/client";
 const newIssuePage = () => {
   const router = useRouter();
-  const [newIssue, setIssue] = useState({ id: 0, title: "", description: "" });
+  const [newIssue, setIssue] = useState({ title: "", description: "" });
 
   const { newIssueMutation } = issueQuery();
   const handleSubmit = () => {

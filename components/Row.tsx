@@ -2,19 +2,17 @@ import { Badge, IconButton, Table } from "@radix-ui/themes";
 import { format, formatDistance } from "date-fns";
 import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { Issue, Status } from "@prisma/client";
-import { useMutation } from "react-query";
 import { deleteIssue, issueQuery } from "@/utils/client";
+import { Issue, Status } from "@prisma/client";
 
 const Row = ({ issue }: { issue: Issue }) => {
-  const mutation = useMutation("delete issue", (id: number) => deleteIssue(id));
   const { deleteIssueMutation, updateIssueMutation } = issueQuery();
   let id = issue.id;
   const handleDelete = () => {
     deleteIssueMutation(id);
   };
   const handleUpdate = () => {
-    updateIssueMutation({ ...issue, title: issue.title + " *" });
+    updateIssueMutation({ ...issue, status: Status.CLOSED });
   };
 
   return (

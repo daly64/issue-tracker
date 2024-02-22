@@ -1,15 +1,6 @@
-import { number } from "valibot";
-// import { Issue } from "@prisma/client";
-
-import { Issue } from "@/types";
-import { notification } from "antd";
+import { Issue } from "@prisma/client";
 import axios from "axios";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 // axios client CRUD
 const baseUrl = "/api/issues";
@@ -34,17 +25,9 @@ export function issueQuery() {
 
   const { mutate: newIssueMutation } = useMutation({
     mutationKey: "new issue",
-    mutationFn: (issue: Issue) => postIssue(issue),
+    mutationFn: (issue: Issue|any) => postIssue(issue),
     onSuccess: () => {
       queryClient.invalidateQueries(["issues"]);
-      notification.open({
-        message: `created successfully`,
-      });
-    },
-    onError: () => {
-      notification.open({
-        message: `something went wrong`,
-      });
     },
   });
 
@@ -53,14 +36,6 @@ export function issueQuery() {
     mutationFn: (issue: Issue) => updateIssue(issue),
     onSuccess: () => {
       queryClient.invalidateQueries(["issues"]);
-      notification.open({
-        message: `updated successfully`,
-      });
-    },
-    onError: () => {
-      notification.open({
-        message: `something went wrong`,
-      });
     },
   });
 
@@ -69,14 +44,6 @@ export function issueQuery() {
     mutationFn: (id: number) => deleteIssue(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["issues"]);
-      notification.open({
-        message: `deleted successfully`,
-      });
-    },
-    onError: () => {
-      notification.open({
-        message: `something went wrong`,
-      });
     },
   });
 
