@@ -14,7 +14,7 @@ const Row = ({ issue }: { issue: Issue }) => {
     deleteIssueMutation(id);
   };
   const handleUpdate = () => {
-    updateIssueMutation({ ...issue, title: issue.title + "*" });
+    updateIssueMutation({ ...issue, title: issue.title + " *" });
   };
 
   return (

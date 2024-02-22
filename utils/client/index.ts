@@ -24,7 +24,6 @@ export const deleteIssue = (id: number) =>
 // reactQuery
 
 export function issueQuery() {
-  // const queryClient = new QueryClient();
   const queryClient = useQueryClient();
   const {
     data,
