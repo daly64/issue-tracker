@@ -5,7 +5,6 @@ import Loading from "@/components/Loading";
 import { issueQuery } from "@/utils/client";
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
-import { MdAdd } from "react-icons/md";
 const page = () => {
   const router = useRouter();
   const goToNewIssue = () => router.push("/issues/new");
@@ -19,15 +18,15 @@ const page = () => {
   }
 
   return (
-    <>
-      {/* <Link href="/issues/new">New issue</Link> */}
-      <Button  onClick={goToNewIssue}>
-        <MdAdd size="20" />
+    <div className="issues-page">
+      <Button outlined
+       onClick={goToNewIssue}>
+        <i className="pi pi-plus" />
         New Issue
       </Button>
 
       <IssuesTable issues={issues} />
-    </>
+    </div>
   );
 };
 

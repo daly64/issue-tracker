@@ -5,8 +5,33 @@
   margin: 0;
   box-sizing: border-box;
 }
+i {
+  margin-right: 10px;
+}
+.issues-page {
+  padding: 10px;
+  margin: 25px;
+  Button {
+    margin-bottom: 10px;
+  }
+}
+
+.new-issue-page {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: start;
+  Button {
+    margin: 10px 0;
+  }
+  .input {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
 .toolbar {
-margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;

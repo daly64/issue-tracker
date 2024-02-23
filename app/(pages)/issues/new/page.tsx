@@ -1,8 +1,10 @@
 "use client";
-import { TextArea, TextField, Button, Heading } from "@radix-ui/themes";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { issueQuery } from "@/utils/client";
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
+import { Button } from "primereact/button";
 const newIssuePage = () => {
   const router = useRouter();
   const [newIssue, setIssue] = useState({ title: "", description: "" });
@@ -22,18 +24,24 @@ const newIssuePage = () => {
   };
 
   return (
-    <div className="max-w-xl space-y-3">
-      <Heading as="h1">New Issue</Heading>
-      <TextField.Input
-        placeholder="Title"
-        value={newIssue.title}
+    <div className="new-issue-page">
+      <h1>New Issue</h1>
+      <InputText 
+      className="input"
+        keyfilter="alpha"
+        placeholder="title"
         onChange={(event) => handleTitleChange(event)}
       />
-      <TextArea
+
+      <InputTextarea
+      className="input"
         placeholder="Description"
         value={newIssue.description}
         onChange={(event) => handleDescriptionChange(event)}
+        rows={5}
+        cols={30}
       />
+
       <Button onClick={handleSubmit}>Submit New Issue</Button>
     </div>
   );

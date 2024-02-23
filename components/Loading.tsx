@@ -1,7 +1,12 @@
-import React from "react";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const Loading = () => {
-  return <h1>Loading ...</h1>;
+  return (
+    <>
+      <ProgressSpinner />
+      <p>Loading ...</p>;
+    </>
+  );
 };
 
 export default Loading;
