@@ -1,9 +1,9 @@
-import { Badge, IconButton, Table } from "@radix-ui/themes";
 import { format, formatDistance } from "date-fns";
 import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { deleteIssue, issueQuery } from "@/utils/client";
 import { Issue, Status } from "@prisma/client";
+import { Column } from "primereact/column";
 
 const Row = ({ issue }: { issue: Issue }) => {
   const { deleteIssueMutation, updateIssueMutation } = issueQuery();
@@ -17,7 +17,10 @@ const Row = ({ issue }: { issue: Issue }) => {
 
   return (
     <>
-      <Table.Row key={issue.id}>
+        <Column key={issue.id} field={issue.title} header="title"></Column>
+
+
+      {/* <Table.Row key={issue.id}>
         <Table.RowHeaderCell>{issue.title}</Table.RowHeaderCell>
         <Table.Cell>{issue.description}</Table.Cell>
         <Table.Cell>
@@ -42,7 +45,7 @@ const Row = ({ issue }: { issue: Issue }) => {
             <MdDelete size="20" />
           </IconButton>
         </Table.Cell>
-      </Table.Row>
+      </Table.Row> */}
     </>
   );
 };

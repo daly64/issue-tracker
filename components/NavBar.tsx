@@ -27,8 +27,8 @@ const NavBar = () => {
           <Button text onClick={() => router.push("/")}>
             <FaBug size="1.5rem" />
           </Button>
-          {links.map((link) => (
-            <Button
+          {links.map((link,index) => (
+            <Button key={index}
               className={linkClassName(link)}
               link
               label={link.label}
