@@ -5,6 +5,8 @@ import { issueQuery } from "@/utils/client";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
+import SimpleMdeReact from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 const newIssuePage = () => {
   const router = useRouter();
   const [newIssue, setIssue] = useState({ title: "", description: "" });
@@ -17,29 +19,25 @@ const newIssuePage = () => {
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIssue({ ...newIssue, title: event.target.value });
   };
-  const handleDescriptionChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setIssue({ ...newIssue, description: event.target.value });
+  const handleDescriptionChange = (value: string) => {
+    setIssue({ ...newIssue, description: value });
   };
 
   return (
     <div className="new-issue-page">
       <h1>New Issue</h1>
-      <InputText 
-      className="input"
-        keyfilter="alpha"
+      <InputText
+        className="input"
+        keyfilter="alphanum"
         placeholder="title"
         onChange={(event) => handleTitleChange(event)}
       />
 
-      <InputTextarea
+      <SimpleMdeReact
       className="input"
-        placeholder="Description"
+        placeholder="description"
         value={newIssue.description}
-        onChange={(event) => handleDescriptionChange(event)}
-        rows={5}
-        cols={30}
+        onChange={(value) => handleDescriptionChange(value)}
       />
 
       <Button onClick={handleSubmit}>Submit New Issue</Button>
