@@ -19,8 +19,7 @@ const page = () => {
 
   return (
     <div className="issues-page">
-      <Button outlined
-       onClick={goToNewIssue}>
+      <Button outlined onClick={goToNewIssue}>
         <i className="pi pi-plus" />
         New Issue
       </Button>

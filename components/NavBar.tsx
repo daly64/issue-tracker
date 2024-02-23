@@ -1,12 +1,25 @@
 "use client";
 import classNames from "classnames";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Toolbar } from "primereact/toolbar";
-import React from "react";
 import { FaBug } from "react-icons/fa";
+import { PrimeReactContext } from "primereact/api";
+import { useContext } from "react";
 const NavBar = () => {
+  let primeContext = useContext(PrimeReactContext);
+
+  const handleClick = (theme: string) => {
+    const oldTheme = theme === "dark" ? "light" : "dark";
+    primeContext &&
+      primeContext.changeTheme &&
+      primeContext.changeTheme(
+        `/themes/lara-${oldTheme}-blue/theme.css`,
+        `/themes/lara-${theme}-blue/theme.css`,
+        "theme-link"
+      );
+  };
+
   const currentPath = usePathname();
 
   const links = [
@@ -21,14 +34,17 @@ const NavBar = () => {
     });
 
   return (
-    <Toolbar className="toolbar"
+    <Toolbar
+      className="toolbar"
       start={
         <>
+          <Button label="dd" onClick={() => handleClick("dark")} />
           <Button text onClick={() => router.push("/")}>
             <FaBug size="1.5rem" />
           </Button>
-          {links.map((link,index) => (
-            <Button key={index}
+          {links.map((link, index) => (
+            <Button
+              key={index}
               className={linkClassName(link)}
               link
               label={link.label}
