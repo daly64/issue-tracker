@@ -1,6 +1,7 @@
 "use client";
 
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { PrimeReactProvider } from "primereact/api";
+
 import { QueryClient, QueryClientProvider } from "react-query";
 // Create a client
 const queryClient = new QueryClient();
@@ -8,10 +9,9 @@ const queryClient = new QueryClient();
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Theme accentColor="blue" grayColor="gray">
-        <main className="p-7">{children}</main>
-        {/* <ThemePanel /> */}
-      </Theme>
+      <PrimeReactProvider>
+        <main>{children}</main>
+      </PrimeReactProvider>
     </QueryClientProvider>
   );
 };

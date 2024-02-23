@@ -1,7 +1,9 @@
 "use client";
 import classNames from "classnames";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { Button } from "primereact/button";
+import { Toolbar } from "primereact/toolbar";
 import React from "react";
 import { FaBug } from "react-icons/fa";
 const NavBar = () => {
@@ -11,34 +13,31 @@ const NavBar = () => {
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
   ];
-
+  const router = useRouter();
   const linkClassName = (link: any) =>
     classNames({
-      "text-zinc-900 font-semi-bold": link.href === currentPath,
-      "text-zinc-400": link.href !== currentPath,
-      "text-lg transition-colors": true,
+      "link-active": link.href === currentPath,
+      link: link.href !== currentPath,
     });
 
   return (
-    <>
-      <nav className=" shadow-md h-12 p-3  flex space-x-5 items-center">
-        <Link href="/">
-          <FaBug size="1.5rem" className="text-blue-500" />
-        </Link>
-
-        <ul className="flex space-x-6 ">
+    <Toolbar className="toolbar"
+      start={
+        <>
+          <Button text onClick={() => router.push("/")}>
+            <FaBug size="1.5rem" />
+          </Button>
           {links.map((link) => (
-            <Link
+            <Button
               className={linkClassName(link)}
-              key={link.href}
-              href={link.href}
-            >
-              {link.label}
-            </Link>
+              link
+              label={link.label}
+              onClick={() => router.push(link.href)}
+            />
           ))}
-        </ul>
-      </nav>
-    </>
+        </>
+      }
+    />
   );
 };
 

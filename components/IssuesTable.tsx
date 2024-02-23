@@ -1,12 +1,13 @@
 import { Issue } from "@prisma/client";
-import { Table } from "@radix-ui/themes";
+
 import React from "react";
 import Row from "./Row";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
   return (
     <>
-      <Table.Root>
+      IssuesTable
+      {/* <Table.Root>
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
@@ -22,7 +23,7 @@ const IssuesTable = ({ issues }: { issues: Issue[] }) => {
             <Row key={issue.id} issue={issue} />
           ))}
         </Table.Body>
-      </Table.Root>
+      </Table.Root> */}
     </>
   );
 };
