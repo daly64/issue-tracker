@@ -1,5 +1,4 @@
 "use client";
-import classNames from "classnames";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Toolbar } from "primereact/toolbar";
@@ -13,23 +12,13 @@ const NavBar = () => {
     { label: "Issues", href: "/issues" },
   ];
   const router = useRouter();
-
-  const linkClassName = (link: any) => {
-    console.log(currentPath);
-
-    if (
-      currentPath === link.href ||
-      (currentPath === "/issues/new" && link.href === "/issues")
-    ) {
-      return "link-active";
-    } else {
-      return "link-not-active";
-    }
-
-    /*     return classNames({
-      "link-active": link.href === currentPath,
-      "link-not-active": link.href !== currentPath,
-    }); */
+  const childrenPathArray = ["/issues/new"];
+  const linkClassName = (link: any) => {   
+    return (
+      (currentPath === link.href )||
+      (childrenPathArray.includes(currentPath)
+       && link.href === "/issues")
+    ) ? "link-active": "link-not-active";  
   };
 
   return (

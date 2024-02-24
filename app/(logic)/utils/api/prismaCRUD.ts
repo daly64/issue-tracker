@@ -1,8 +1,8 @@
-import { Params } from "@/types";
 import prisma from "@/prisma/client";
 import { Issue } from "@prisma/client";
 import { safeParse } from "valibot";
-import { issueSchema } from "@/validationSchemas";
+import { issueSchema } from "@logic/validationSchemas";
+import { Params } from "@types";
 
 export function getIdFromParams(params: Params) {
   return Number.parseInt(params.params.id);

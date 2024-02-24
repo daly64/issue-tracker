@@ -5,7 +5,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { format, formatDistance } from "date-fns";
 import { Button } from "primereact/button";
-import { issueQuery } from "@/utils/client";
+import { issueQuery } from "@utils/client/reactQuery";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
   const { deleteIssueMutation, updateIssueMutation } = issueQuery();

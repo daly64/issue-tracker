@@ -1,5 +1,5 @@
+import { prismaFindAllIssues } from "@/app/(logic)/utils/api/prismaCRUD";
 import { NextRequest, NextResponse } from "next/server";
-import { prismaFindAllIssues } from "@/utils/api";
 
 export async function GET(request: NextRequest) {
   try {
