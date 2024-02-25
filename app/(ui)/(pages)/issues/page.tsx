@@ -20,7 +20,7 @@ const page = () => {
 
   return (
     <div className="issues-page">
-      <Button outlined onClick={goToNewIssue}>
+      <Button text raised onClick={goToNewIssue}>
         <i className="pi pi-plus" />
         New Issue
       </Button>

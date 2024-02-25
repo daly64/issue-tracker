@@ -3,15 +3,13 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import handlers from "@utils/client/handlers";
 import { useRouter } from "next/navigation";
+import handlers from "@utils/client/handlers";
 
 const newIssuePage = () => {
   const router = useRouter();
   const goToIssue = () => router.push("/issues");
-
-  let { handleDescriptionChange, handleTitleChange, handleSubmit, newIssue } =
-    handlers();
+  const{newIssue,handleSubmit,handleTitleChange,handleDescriptionChange}=handlers()
   return (
     <div className="new-issue-page">
       <h1>New Issue</h1>

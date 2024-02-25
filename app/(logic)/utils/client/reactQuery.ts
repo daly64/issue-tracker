@@ -15,7 +15,7 @@ export function issueQuery() {
 
   const { mutate: newIssueMutation } = useMutation({
     mutationKey: "new issue",
-    mutationFn: (issue: Issue|any) => postIssue(issue),
+    mutationFn: (issue: Issue | any) => postIssue(issue),
     onSuccess: () => {
       queryClient.invalidateQueries(["issues"]);
     },

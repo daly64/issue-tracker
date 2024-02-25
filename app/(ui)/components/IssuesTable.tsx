@@ -5,18 +5,10 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { format, formatDistance } from "date-fns";
 import { Button } from "primereact/button";
-import { issueQuery } from "@utils/client/reactQuery";
+import handlers from "@utils/client/handlers";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
-  const { deleteIssueMutation, updateIssueMutation } = issueQuery();
-
-  const handleDelete = (issue: Issue) => {
-    deleteIssueMutation(issue.id);
-  };
-  const handleUpdate = (issue: Issue) => {
-    updateIssueMutation({ ...issue, status: Status.CLOSED });
-  };
-
+  const{handleUpdate,handleDelete}=handlers()
   return (
     <>
       <DataTable value={issues} size="small" tableStyle={{ minWidth: "1rem" }}>
@@ -37,7 +29,7 @@ const IssuesTable = ({ issues }: { issues: Issue[] }) => {
               <Button
                 text
                 icon="pi pi-pencil"
-                onClick={() => handleUpdate(row)}
+                onClick={() =>handleUpdate(row)}
               />
               <Button
                 text

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { issueQuery } from "./reactQuery";
-import { useRouter } from "next/navigation";
+import { Issue, Status } from "@prisma/client";
 
 export default function handlers() {
   const [newIssue, setIssue] = useState({ title: "", description: "" });
 
-  const { newIssueMutation } = issueQuery();
+  const { newIssueMutation, deleteIssueMutation, updateIssueMutation } =
+    issueQuery();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIssue({ ...newIssue, title: event.target.value });
@@ -16,6 +17,28 @@ export default function handlers() {
   const handleSubmit = () => {
     newIssueMutation(newIssue);
   };
-  return { handleSubmit, handleTitleChange, handleDescriptionChange, newIssue };
+
+  const handleDelete = (issue: Issue) => {
+    deleteIssueMutation(issue.id);
+  };
+  const handleUpdate = (issue: Issue) => {
+    updateIssueMutation({ ...issue, status: Status.CLOSED });
+  };
+
+  return {
+    handleSubmit,
+    handleTitleChange,
+    handleDescriptionChange,
+    handleDelete,
+    handleUpdate,
+    newIssue,
+  };
 }
- exports.handlers = handlers
+/* export const {
+  handleSubmit,
+  handleTitleChange,
+  handleDescriptionChange,
+  handleDelete,
+  handleUpdate,
+  newIssue,
+} = handlers(); */
