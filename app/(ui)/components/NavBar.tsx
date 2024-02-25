@@ -13,12 +13,11 @@ const NavBar = () => {
   ];
   const router = useRouter();
   const childrenPathArray = ["/issues/new"];
-  const linkClassName = (link: any) => {   
-    return (
-      (currentPath === link.href )||
-      (childrenPathArray.includes(currentPath)
-       && link.href === "/issues")
-    ) ? "link-active": "link-not-active";  
+  const linkClassName = (link: any) => {
+    return currentPath === link.href ||
+      (childrenPathArray.includes(currentPath) && link.href === "/issues")
+      ? "link-active"
+      : "link-not-active";
   };
 
   return (

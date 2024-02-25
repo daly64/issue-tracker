@@ -31,6 +31,26 @@ i {
     margin: 5px 0;
   }
 }
+.edit-issue-page {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: start;
+  Button {
+    margin: 5px 0;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .input {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
 
 .toolbar {
   margin-bottom: 0.5rem;

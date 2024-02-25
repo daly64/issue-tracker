@@ -19,6 +19,18 @@ export function issueQuery() {
   } = useQuery({ queryKey: "issues", queryFn: getAllIssues });
   const issues = data?.data as Issue[];
 
+  const singleIssue = (id: number) => {
+    const { data, isLoading, error } = useQuery({
+      queryKey: ["issue", id],
+      queryFn: () => getIssueById(id),
+    });
+    return {
+      singleIssueIsLoading: isLoading,
+      singleIssueError: error,
+      Issue: data?.data as Issue,
+    };
+  };
+
   const { mutate: newIssueMutation } = useMutation({
     mutationKey: "new issue",
     mutationFn: (issue: Issue | any) => postIssue(issue),
@@ -44,6 +56,7 @@ export function issueQuery() {
   });
 
   return {
+    singleIssue,
     issues,
     issuesIsLoading,
     issuesError,

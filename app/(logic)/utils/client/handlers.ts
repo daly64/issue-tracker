@@ -4,7 +4,7 @@ import { Issue, Status } from "@prisma/client";
 export const handlers = () => {
   const { newIssueMutation, deleteIssueMutation, updateIssueMutation } =
     issueQuery();
-  let newIssue = { title: "", description: "" };
+  let newIssue = { title: "", description: "", status: Status.OPEN };
 
   return {
     newIssue: newIssue,
@@ -13,8 +13,21 @@ export const handlers = () => {
       (newIssue = { ...newIssue, title: event.target.value }),
     handleDescriptionChange: (value: string) =>
       (newIssue = { ...newIssue, description: value }),
+    handleStatusChange: (value: any) =>
+      (newIssue = { ...newIssue, status: value }),
     handleDelete: (issue: Issue) => deleteIssueMutation(issue.id),
-    handleUpdate: (issue: Issue) =>
-      updateIssueMutation({ ...issue, status: Status.CLOSED }),
+    handleUpdate: (
+      title: string,
+      description: string,
+      status: any,
+      oldIssue: Issue
+    ) => {
+      updateIssueMutation({
+        ...oldIssue,
+        title: title,
+        description: description,
+        status: status,
+      });
+    },
   };
 };
