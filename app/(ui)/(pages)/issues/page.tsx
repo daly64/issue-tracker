@@ -1,15 +1,13 @@
 "use client";
 import { issueQuery } from "@utils/client/reactQuery";
-import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import Loading from "@components/Loading";
 import Error from "@components/Error";
 import IssuesTable from "@components/IssuesTable";
+import navigationSystem from "@utils/client/navigationSystem";
 
 const page = () => {
-  const router = useRouter();
-  const goToNewIssue = () => router.push("/issues/new");
-
+  const { goToNewIssuePage } = navigationSystem();
   const { issues, issuesIsLoading, issuesError } = issueQuery();
   if (issuesIsLoading) {
     return <Loading />;
@@ -20,7 +18,7 @@ const page = () => {
 
   return (
     <div className="issues-page">
-      <Button text raised onClick={goToNewIssue}>
+      <Button text raised onClick={goToNewIssuePage}>
         <i className="pi pi-plus" />
         New Issue
       </Button>

@@ -1,14 +1,17 @@
-import { Issue, Status } from "@prisma/client";
+import { Issue } from "@prisma/client";
 
 import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { format, formatDistance } from "date-fns";
 import { Button } from "primereact/button";
-import handlers from "@utils/client/handlers";
+import { handlers } from "@utils/client/handlers";
+import navigationSystem from "@utils/client/navigationSystem";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
-  const{handleUpdate,handleDelete}=handlers()
+  const { goToEditIssuePage } = navigationSystem();
+  const {  handleDelete } = handlers();
+
   return (
     <>
       <DataTable value={issues} size="small" tableStyle={{ minWidth: "1rem" }}>
@@ -29,7 +32,7 @@ const IssuesTable = ({ issues }: { issues: Issue[] }) => {
               <Button
                 text
                 icon="pi pi-pencil"
-                onClick={() =>handleUpdate(row)}
+                onClick={()=> goToEditIssuePage(row.id)}
               />
               <Button
                 text

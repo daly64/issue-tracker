@@ -1,18 +1,22 @@
 "use client";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import SimpleMdeReact from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
 import { handlers } from "@utils/client/handlers";
 import navigationSystem from "@utils/client/navigationSystem";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import React from "react";
+import SimpleMdeReact from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
+import { Params } from "@types";
+import { getIssueById } from "@utils/client/axiosCRUD";
+const editIssuePage = ({ params }: Params) => {
+  const { id } = params;
 
-const newIssuePage = () => {
   const { goToIssuePage } = navigationSystem();
   const { newIssue, handleSubmit, handleTitleChange, handleDescriptionChange } =
     handlers();
   return (
     <div className="new-issue-page">
-      <h1>New Issue</h1>
+      <h1>Edit Issue</h1>
       <InputText
         className="input"
         keyfilter="alphanum"
@@ -33,9 +37,10 @@ const newIssuePage = () => {
           goToIssuePage();
         }}
       >
-        Submit New Issue
+        Save
       </Button>
     </div>
   );
 };
-export default newIssuePage;
+
+export default editIssuePage;

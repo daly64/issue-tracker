@@ -1,6 +1,12 @@
 import { Issue } from "@prisma/client";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getAllIssues, postIssue, updateIssue, deleteIssue } from "./axiosCRUD";
+import {
+  getAllIssues,
+  postIssue,
+  updateIssue,
+  deleteIssue,
+  getIssueById,
+} from "./axiosCRUD";
 
 // reactQuery
 

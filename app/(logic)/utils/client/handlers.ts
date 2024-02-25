@@ -1,44 +1,20 @@
-import { useState } from "react";
 import { issueQuery } from "./reactQuery";
 import { Issue, Status } from "@prisma/client";
 
-export default function handlers() {
-  const [newIssue, setIssue] = useState({ title: "", description: "" });
-
+export const handlers = () => {
   const { newIssueMutation, deleteIssueMutation, updateIssueMutation } =
     issueQuery();
-
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIssue({ ...newIssue, title: event.target.value });
-  };
-  const handleDescriptionChange = (value: string) => {
-    setIssue({ ...newIssue, description: value });
-  };
-  const handleSubmit = () => {
-    newIssueMutation(newIssue);
-  };
-
-  const handleDelete = (issue: Issue) => {
-    deleteIssueMutation(issue.id);
-  };
-  const handleUpdate = (issue: Issue) => {
-    updateIssueMutation({ ...issue, status: Status.CLOSED });
-  };
+  let newIssue = { title: "", description: "" };
 
   return {
-    handleSubmit,
-    handleTitleChange,
-    handleDescriptionChange,
-    handleDelete,
-    handleUpdate,
-    newIssue,
+    newIssue: newIssue,
+    handleSubmit: () => newIssueMutation(newIssue),
+    handleTitleChange: (event: any) =>
+      (newIssue = { ...newIssue, title: event.target.value }),
+    handleDescriptionChange: (value: string) =>
+      (newIssue = { ...newIssue, description: value }),
+    handleDelete: (issue: Issue) => deleteIssueMutation(issue.id),
+    handleUpdate: (issue: Issue) =>
+      updateIssueMutation({ ...issue, status: Status.CLOSED }),
   };
-}
-/* export const {
-  handleSubmit,
-  handleTitleChange,
-  handleDescriptionChange,
-  handleDelete,
-  handleUpdate,
-  newIssue,
-} = handlers(); */
+};
