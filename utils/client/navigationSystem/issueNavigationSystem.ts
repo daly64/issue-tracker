@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-const navigationSystem = () => {
+const issueNavigationSystem = () => {
   const router = useRouter();
   return {
     goToIssuePage: () => router.push("/issues"),
@@ -8,4 +8,4 @@ const navigationSystem = () => {
     goToEditIssuePage: (id: number) => router.push(`/issues/edit/${id}`),
   };
 };
-export default navigationSystem;
+export default issueNavigationSystem;

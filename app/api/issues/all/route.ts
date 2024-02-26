@@ -1,4 +1,4 @@
-import { prismaFindAllIssues } from "@/app/(logic)/utils/api/prismaCRUD";
+import { prismaFindAllIssues } from "@/utils/api/prisma/CRUD/issueCRUD";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

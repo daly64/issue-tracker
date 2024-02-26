@@ -1,8 +1,8 @@
+import NavBar from "@/components/NavBar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavBar from "./(ui)/components/NavBar";
-import Provider from "./(ui)/components/Provider";
+import Provider from "@/components/Provider";
 
 
 const inter = Inter({

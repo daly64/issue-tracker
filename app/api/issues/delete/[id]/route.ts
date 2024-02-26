@@ -1,8 +1,8 @@
-import { Params } from "@types";
+import { Params } from "@/utils/api/interfaces/Params";
 import {
   getIdFromParams,
   prismaDeleteIssue,
-} from "@/app/(logic)/utils/api/prismaCRUD";
+} from "@/utils/api/prisma/CRUD/issueCRUD";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(request: NextRequest, params: Params) {

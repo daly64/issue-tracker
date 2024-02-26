@@ -5,12 +5,12 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { format, formatDistance } from "date-fns";
 import { Button } from "primereact/button";
-import { handlers } from "@utils/client/handlers";
-import navigationSystem from "@utils/client/navigationSystem";
+import { issueHandlers } from "@/utils/client/handlers/issueHandlers";
+import issueNavigationSystem from "@/utils/client/navigationSystem/issueNavigationSystem";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
-  const { goToEditIssuePage } = navigationSystem();
-  const {  handleDelete } = handlers();
+  const { goToEditIssuePage } = issueNavigationSystem();
+  const { handleDelete } = issueHandlers();
 
   return (
     <>
@@ -32,7 +32,7 @@ const IssuesTable = ({ issues }: { issues: Issue[] }) => {
               <Button
                 text
                 icon="pi pi-pencil"
-                onClick={()=> goToEditIssuePage(row.id)}
+                onClick={() => goToEditIssuePage(row.id)}
               />
               <Button
                 text

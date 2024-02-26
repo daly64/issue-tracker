@@ -1,7 +1,7 @@
-import { issueQuery } from "./reactQuery";
+import { issueQuery } from "../reactQuery/issueQuery";
 import { Issue, Status } from "@prisma/client";
 
-export const handlers = () => {
+export const issueHandlers = () => {
   const { newIssueMutation, deleteIssueMutation, updateIssueMutation } =
     issueQuery();
   let newIssue = { title: "", description: "", status: Status.OPEN };

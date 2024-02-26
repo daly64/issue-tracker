@@ -1,23 +1,24 @@
 "use client";
-import { handlers } from "@utils/client/handlers";
-import navigationSystem from "@utils/client/navigationSystem";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import React, { useEffect, useState } from "react";
 import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { Params } from "@types";
-import { issueQuery } from "@utils/client/reactQuery";
-import Loading from "@components/Loading";
-import Error from "@components/Error";
+
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
 import { Dropdown } from "primereact/dropdown";
 import { Issue, Status } from "@prisma/client";
 import { any } from "valibot";
+import { issueQuery } from "@/utils/client/reactQuery/issueQuery";
+import { Params } from "@/utils/api/interfaces/Params";
+import issueNavigationSystem from "@/utils/client/navigationSystem/issueNavigationSystem";
+import { issueHandlers } from "@/utils/client/handlers/issueHandlers";
 
 const editIssuePage = ({ params }: Params) => {
   const { singleIssue } = issueQuery();
-  const { goToIssuePage } = navigationSystem();
-  const { handleUpdate } = handlers();
+  const { goToIssuePage } = issueNavigationSystem();
+  const { handleUpdate } = issueHandlers();
   const { id } = params;
   const { Issue, singleIssueIsLoading, singleIssueError } = singleIssue(
     Number(id)

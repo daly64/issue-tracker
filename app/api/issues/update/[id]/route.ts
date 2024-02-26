@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Params } from "@types";
+import { Params } from "@/utils/api/interfaces/Params";
 import {
   getIdFromParams,
   prismaUpdateIssue,
-} from "@/app/(logic)/utils/api/prismaCRUD";
+} from "@/utils/api/prisma/CRUD/issueCRUD";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest, params: Params) {
   const id = getIdFromParams(params);

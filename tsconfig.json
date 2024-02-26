@@ -20,12 +20,6 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@logic/*": ["./app/(logic)/*"],
-      "@utils/*": ["./app/(logic)/utils/*"],
-      "@types": ["./app/(logic)/types"],
-      "@components/*": ["./app/(ui)/components/*"],
-      "@pages*": ["./app/(ui)/(pages)/*"],
-
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

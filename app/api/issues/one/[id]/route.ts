@@ -1,6 +1,9 @@
+import { Params } from "@/utils/api/interfaces/Params";
+import {
+  getIdFromParams,
+  prismaFindIssueById,
+} from "@/utils/api/prisma/CRUD/issueCRUD";
 import { NextRequest, NextResponse } from "next/server";
-import { Params } from "@types";
-import { getIdFromParams, prismaFindIssueById } from "@utils/api/prismaCRUD";
 
 export async function GET(request: NextRequest, params: Params) {
   try {

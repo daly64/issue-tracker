@@ -6,7 +6,7 @@ import {
   updateIssue,
   deleteIssue,
   getIssueById,
-} from "./axiosCRUD";
+} from "../axios/issueCRUD";
 
 // reactQuery
 

@@ -3,13 +3,13 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { handlers } from "@utils/client/handlers";
-import navigationSystem from "@utils/client/navigationSystem";
+import issueNavigationSystem from "@/utils/client/navigationSystem/issueNavigationSystem";
+import { issueHandlers } from "@/utils/client/handlers/issueHandlers";
 
 const newIssuePage = () => {
-  const { goToIssuePage } = navigationSystem();
+  const { goToIssuePage } = issueNavigationSystem();
   const { newIssue, handleSubmit, handleTitleChange, handleDescriptionChange } =
-    handlers();
+    issueHandlers();
   return (
     <div className="new-issue-page">
       <h1>New Issue</h1>

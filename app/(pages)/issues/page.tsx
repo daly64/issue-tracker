@@ -1,13 +1,13 @@
 "use client";
-import { issueQuery } from "@utils/client/reactQuery";
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
+import issueNavigationSystem from "@/utils/client/navigationSystem/issueNavigationSystem";
+import { issueQuery } from "@/utils/client/reactQuery/issueQuery";
 import { Button } from "primereact/button";
-import Loading from "@components/Loading";
-import Error from "@components/Error";
-import IssuesTable from "@components/IssuesTable";
-import navigationSystem from "@utils/client/navigationSystem";
+import IssuesTable from "@/components/IssuesTable";
 
 const page = () => {
-  const { goToNewIssuePage } = navigationSystem();
+  const { goToNewIssuePage } = issueNavigationSystem();
   const { issues, issuesIsLoading, issuesError } = issueQuery();
   if (issuesIsLoading) {
     return <Loading />;
@@ -18,9 +18,9 @@ const page = () => {
 
   return (
     <div className="issues-page">
-      <Button text raised onClick={goToNewIssuePage}>
+      <Button text onClick={goToNewIssuePage}>
         <i className="pi pi-plus" />
-        New Issue
+        <p>New Issue</p> 
       </Button>
 
       <IssuesTable issues={issues} />
