@@ -19,7 +19,6 @@ const NavBar = () => {
       ? "link-active"
       : "link-not-active";
   };
-
   return (
     <Toolbar
       className="toolbar"
