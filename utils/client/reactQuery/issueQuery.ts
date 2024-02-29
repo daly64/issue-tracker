@@ -12,17 +12,23 @@ import {
 
 export function issueQuery() {
   const queryClient = useQueryClient();
+
   const {
     data,
     isLoading: issuesIsLoading,
     error: issuesError,
-  } = useQuery({ queryKey: "issues", queryFn: getAllIssues });
+  } = useQuery({
+    queryKey: "issues",
+    queryFn: getAllIssues,
+    refetchInterval: 1000,
+  });
   const issues = data?.data as Issue[];
 
   const singleIssue = (id: number) => {
     const { data, isLoading, error } = useQuery({
       queryKey: ["issue", id],
       queryFn: () => getIssueById(id),
+      cacheTime: 0,
     });
     return {
       singleIssueIsLoading: isLoading,

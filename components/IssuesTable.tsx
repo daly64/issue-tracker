@@ -7,11 +7,11 @@ import { format, formatDistance } from "date-fns";
 import { Button } from "primereact/button";
 import { issueHandlers } from "@/utils/client/handlers/issueHandlers";
 import issueNavigationSystem from "@/utils/client/navigationSystem/issueNavigationSystem";
+import { issueQuery } from "@/utils/client/reactQuery/issueQuery";
 
 const IssuesTable = ({ issues }: { issues: Issue[] }) => {
   const { goToEditIssuePage } = issueNavigationSystem();
   const { handleDelete } = issueHandlers();
-
   return (
     <>
       <DataTable value={issues} size="small" tableStyle={{ minWidth: "1rem" }}>
